@@ -1,1 +1,19 @@
-<p>categories works!</p>
+<section class="py-3">
+  <div class="container">
+    <div class="row">
+      @for (category of categories; track category._id) {
+      <div class="col-md-3  ">
+        <div class="card mb-3 cursor-pointer">
+          <div class="card-img" style="height: 400px; overflow: hidden;">
+            <img [src]="category.image" class="img-fluid w-100 h-100 d-block" style="object-fit: cover;"
+              alt="{{ category.name }}">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-main fw-bold text-center">{{ category.name }}</h5>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

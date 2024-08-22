@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
   <div class="container">
     <a class="navbar-brand cursor-pointer" routerLink="home">
       <img src="./assets/images/freshcart-logo.svg" alt="Logo">
@@ -16,7 +16,7 @@
           <a class="nav-link" routerLinkActive="active-link" routerLink="products">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active-link" routerLink="cart">Cart</a>
+          <a class="nav-link" routerLinkActive="active-link" routerLink="categories">Categories</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active-link" routerLink="brands">Brands</a>
@@ -24,28 +24,29 @@
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link">
-            <i class="fa-brands fa-facebook"></i>
+          <a class="nav-link position-relative" routerLink="wishlist">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              20
+              <span class="visually-hidden">unread messages</span>
+            </span>
+            WishList
+            <i class="fa-regular fa-heart "></i>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">
-            <i class="fa-brands fa-twitter"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="fa-brands fa-linkedin"></i>
+          <a class="nav-link position-relative" routerLink="cart">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              20
+              <span class="visually-hidden">unread messages</span>
+            </span>
+            Cart
+            <i class="fa-solid fa-cart-shopping"></i>
+
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link cursor-pointer">
-            SignOut
+            LogOut
           </a>
         </li>
       </ul>

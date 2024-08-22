@@ -9,6 +9,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { CartComponent } from './components/cart/cart.component';
 import { BrandsComponent } from './components/brands/brands.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,7 @@ export const routes: Routes = [
         component: CategoriesComponent,
         title: 'Categories',
       },
+      { path: 'wishlist', component: WishListComponent, title: 'WishList' },
     ],
   },
   { path: '**', component: NotFoundComponent, title: 'Not Found' },

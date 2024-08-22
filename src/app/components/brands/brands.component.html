@@ -1,1 +1,17 @@
-<p>brands works!</p>
+<section class="brands py-3">
+  <div class="container">
+    <div class="row">
+      @for (brand of brands; track brand._id) {
+
+
+      <div class="col-md-3">
+        <div class="brand position-relative my-3 text-center cursor-pointer  ">
+          <img [src]="brand.image" [alt]="brand.name" class="img-fluid">
+          <span class="position-absolute  brand-name text-main  fw-bold ">{{brand.name}}</span>
+        </div>
+
+      </div>
+      }
+    </div>
+  </div>
+</section>

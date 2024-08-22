@@ -1,0 +1,15 @@
+.brands .brand {
+  box-shadow: rgba(113, 194, 37, 0.25) 0px 1px 1px,
+    rgba(113, 194, 37, 0.12) 0px 0px 1px 1px;
+
+  transition: all 0.6s ease;
+}
+
+.brands .brand:hover {
+  box-shadow: rgba(113, 194, 37, 0.34) 0px 10px 20px;
+}
+
+.brands .brand-name {
+  bottom: 8%;
+  left: 5%;
+}
