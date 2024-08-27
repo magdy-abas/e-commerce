@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-nav-blank',
@@ -8,4 +9,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './nav-blank.component.html',
   styleUrl: './nav-blank.component.scss',
 })
-export class NavBlankComponent {}
+export class NavBlankComponent {
+  constructor(public _AuthService: AuthService) {}
+}

@@ -10,13 +10,15 @@ import { CartComponent } from './components/cart/cart.component';
 import { BrandsComponent } from './components/brands/brands.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
+import { authGuard } from './core/guards/auth.guard';
+import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
 
 export const routes: Routes = [
   {
     //path:'auth'
     path: '',
     component: AuthLayoutComponent,
-
+    canActivate: [isLoggedInGuard],
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent, title: 'Login' },
@@ -27,6 +29,7 @@ export const routes: Routes = [
     //path:'blank'
     path: '',
     component: BlankLayoutComponent,
+    canActivate: [authGuard],
 
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },

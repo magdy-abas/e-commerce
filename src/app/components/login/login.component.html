@@ -9,22 +9,32 @@
 
 
 
-      <form class="w-75 m-auto ">
+      <form class="w-75 m-auto " [formGroup]="loginForm" (ngSubmit)="sendData()">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address :</label>
-          <input type="email" class="form-control" id="exampleInputEmail1">
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email">
+          <alertError controlName="email" [formName]="loginForm" />
         </div>
 
         <div class="mb-3">
           <label for="password" class="form-label">Password :</label>
-          <input type="password" class="form-control" id="password">
+          <input type="password" class="form-control" id="password" formControlName="password">
+          <alertError controlName="password" [formName]="loginForm" />
         </div>
 
 
         <div class="mb-3 forget-pass">
           <a class="text-main cursor-pointer"> Forgotten password ?</a>
         </div>
-        <button type="submit " class="btn btn-main">Submit</button>
+
+        <p class="text-danger fw-semibold">{{msgError}} </p>
+        <button [disabled]="isBtnSubmit" type="submit " class="btn btn-main">
+
+          login
+          @if (isBtnSubmit) {
+          <i class="fa-solid fa-spinner fa-spin"></i>
+          }
+        </button>
       </form>
 
 

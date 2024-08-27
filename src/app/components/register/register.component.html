@@ -3,48 +3,61 @@
     <img src="./assets/images/Sign up-amico.svg" class="img-fluid" alt="register">
   </div>
   <div class="col-md-6 bg-body-tertiary py-5 py-md-0 align-content-center ">
-    <div class="form  text-main fw-medium ">
+    <div class="form  text-main fw-medium   py-5">
       <h1 class="h2 text-center">Sign Up</h1>
 
       <form [formGroup]="registerForm" (ngSubmit)="sendData()" class="w-75 m-auto ">
         <div class="mb-3">
           <label for="name" class="form-label ">Name :</label>
-          <input type="text" class="form-control" id="name" formControlName="name">
+          <input type="text" class="form-control is-valid" id="name" formControlName="name" [ngClass]="
+          {
+            'is-valid': isFieldValid('name'),
+            'is-invalid': isFieldInvalid('name')
+          } ">
           <alertError controlName="name" [formName]="registerForm" />
         </div>
 
 
-
         <div class="mb-3">
           <label for="email" class="form-label">Email address :</label>
-          <input type="email" class="form-control" id="email" formControlName="email">
+          <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="
+          {
+             'is-valid': isFieldValid('email'),
+            'is-invalid': isFieldInvalid('email')
+            }">
           <alertError controlName="email" [formName]="registerForm" />
         </div>
 
-        <div class="mb-3">
-          <label for="phone" class="form-label">Phone Number : </label>
-          <input type="tel" class="form-control" id="phone" formControlName="phone">
-          <alertError controlName="phone" [formName]="registerForm" />
-        </div>
+
 
 
         <div class="mb-3 ">
           <label for="password" class="form-label">Password :</label>
-          <input type="password" class="form-control" id="password" formControlName="password">
+          <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="
+          {
+             'is-valid': isFieldValid('password'),
+            'is-invalid': isFieldInvalid('password')
+            }">
           <alertError controlName="password" [formName]="registerForm" />
         </div>
 
 
         <div class="mb-3">
           <label for="rePassword" class="form-label">rePassword :</label>
-          <input type="password" class="form-control" id="rePassword" formControlName="rePassword">
+          <input type="password" class="form-control" id="rePassword" formControlName="rePassword" [ngClass]="
+          {
+             'is-valid': !registerForm.getError('mismatch') && (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty),
+            'is-invalid':  (!registerForm.get('rePassword')?.value || registerForm.getError('mismatch')) && (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty)
+            }">
 
 
           <alertError controlName="rePassword" [formName]="registerForm" />
 
         </div>
-
-        <button class="d-block ms-auto btn btn-main  ">Register</button>
+        <p class="text-danger fw-semibold">{{msgError}} </p>
+        <button [disabled]=" isLoading" class="d-block ms-auto btn btn-main  ">Register
+          @if (isLoading ) { <span><i class="fas fa-spin fa-spinner"></i></span>}
+        </button>
 
       </form>
     </div>

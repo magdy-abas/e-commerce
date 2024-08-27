@@ -3,7 +3,7 @@
 <div class="alert alert-danger mt-1">
   <ul class="m-0">
 
-    @if(formName.get(controlName)?.getError('required')){
+    @if(formName.get(controlName)?.getError('required') ){
     <li> Input is required</li>
     }@if (formName.get(controlName)?.getError('minlength')) {
     <li>Input must be at least 2 characters long.</li>
@@ -12,7 +12,7 @@
     } @if (formName.get(controlName)?.getError('email')) {
     <li> Please enter a valid email address</li>
     }@if (formName.get(controlName)?.getError('pattern')) {
-    <li> Custom field should match the pattern</li>
+    <li>password must be at least 6 characters long and include at least one uppercase letter</li>
     }
   </ul>
 </div>
