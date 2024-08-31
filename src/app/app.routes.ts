@@ -12,6 +12,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { authGuard } from './core/guards/auth.guard';
 import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
+import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,11 @@ export const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent, title: 'Login' },
       { path: 'register', component: RegisterComponent, title: 'Register' },
+      {
+        path: 'forgot',
+        component: ForgotPassComponent,
+        title: 'Forgot Password',
+      },
     ],
   },
   {

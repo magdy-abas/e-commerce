@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  userData: any = null;
   constructor(private _HttpClient: HttpClient, private _Router: Router) {}
 
   register = (user: object): Observable<any> => {
@@ -23,10 +22,10 @@ export class AuthService {
   saveUserData = (): void => {
     let token: any = localStorage.getItem('token');
 
-    if (token) {
+    if (localStorage.getItem('token') != null) {
       try {
-        this.userData = jwtDecode(token);
-        console.log(this.userData);
+        let decoded = jwtDecode(token);
+        console.log(decoded);
       } catch (error) {
         this._Router.navigate(['login']);
         localStorage.clear();
@@ -36,7 +35,20 @@ export class AuthService {
 
   logOut = (): void => {
     localStorage.removeItem('token');
-    this.userData = null;
     this._Router.navigate(['/login']);
+  };
+
+  emailVerify = (email: object): Observable<any> => {
+    return this._HttpClient.post(
+      baseUrl + 'api/v1/auth/forgotPasswords',
+      email
+    );
+  };
+
+  resetCode = (code: object): Observable<any> => {
+    return this._HttpClient.post(baseUrl + 'api/v1/auth/verifyResetCode', code);
+  };
+  resetPassword = (pass: object): Observable<any> => {
+    return this._HttpClient.put(baseUrl + 'api/v1/auth/resetPassword', pass);
   };
 }
