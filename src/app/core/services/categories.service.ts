@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class CategoriesService {
   constructor(private _HttpClient: HttpClient) {}
 
-  getCategories = (): Observable<any> => {
+  getAllCategories = (): Observable<any> => {
     return this._HttpClient.get(baseUrl + 'api/v1/categories');
   };
 }

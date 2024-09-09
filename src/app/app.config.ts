@@ -5,7 +5,7 @@ import {
   withInMemoryScrolling,
   withViewTransitions,
 } from '@angular/router';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 
@@ -19,5 +19,6 @@ export const appConfig: ApplicationConfig = {
     ),
 
     provideHttpClient(),
+    importProvidersFrom(BrowserAnimationsModule),
   ],
 };
