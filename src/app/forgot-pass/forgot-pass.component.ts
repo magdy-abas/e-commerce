@@ -9,7 +9,6 @@ import {
 import { AlertErrorComponent } from '../shared/ui/alert-error/alert-error.component';
 import { AuthService } from '../core/services/auth.service';
 import { signupValidators } from '../shared/validators/register.validators';
-('rxjs');
 import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-forgot-pass',
@@ -33,12 +32,12 @@ export class ForgotPassComponent {
   });
 
   resetPass = new FormGroup({
-    email: new FormControl(null, signupValidators.email),
+    email: new FormControl<string | null>(null, signupValidators.email),
     newPassword: new FormControl(null, signupValidators.password),
   });
 
   verifyEmailSubmit(): void {
-    let userEmail = this.verifyEmail.get('email')?.value;
+    const userEmail = this.verifyEmail.get('email')?.value;
     this.resetPass.get('email')?.patchValue(userEmail!);
     this.isBtnSubmit = true;
     this._AuthService.emailVerify(this.verifyEmail.value).subscribe({
@@ -49,6 +48,9 @@ export class ForgotPassComponent {
         if (res.statusMsg == 'success') {
           this.msgError = '';
           this.step = 2;
+          //save user steps
+          localStorage.setItem('currentStep', this.step.toString());
+          localStorage.setItem('currentEmail', userEmail!);
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -69,6 +71,7 @@ export class ForgotPassComponent {
         if (res.status == 'Success') {
           this.msgError = '';
           this.step = 3;
+          localStorage.setItem('currentStep', this.step.toString());
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -91,9 +94,16 @@ export class ForgotPassComponent {
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
-        this.msgError = err.error.message;
+        this.msgError = err?.error?.message || 'Error';
         this.isBtnSubmit = false;
       },
     });
+  }
+
+  ngOnInit(): void {
+    this.step = Number(localStorage.getItem('currentStep')) || 1;
+
+    const savedEmail = localStorage.getItem('currentEmail');
+    this.resetPass.get('email')?.patchValue(savedEmail);
   }
 }

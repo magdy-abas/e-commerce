@@ -27,7 +27,12 @@
           <a class="text-main cursor-pointer" routerLink="/forgot"> Forgotten password ?</a>
         </div>
 
-        <p class="text-danger fw-semibold">{{msgError}} </p>
+
+        <p class="text-danger fw-semibold">@if (msgError == "fail") {
+          all inputs Requierd
+          }@else {
+          {{msgError}}
+          } </p>
         <button [disabled]="isBtnSubmit" type="submit " class="btn btn-main">
 
           login

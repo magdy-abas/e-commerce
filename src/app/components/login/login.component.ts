@@ -22,8 +22,8 @@ export class LoginComponent {
   isBtnSubmit = false;
   msgError = '';
   loginForm = this._FormBuilder.group({
-    email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required]],
+    email: [null, []],
+    password: [null, []],
   });
 
   sendData() {

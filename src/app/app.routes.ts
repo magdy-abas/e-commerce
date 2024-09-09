@@ -13,6 +13,7 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { authGuard } from './core/guards/auth.guard';
 import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 export const routes: Routes = [
   {
@@ -49,6 +50,11 @@ export const routes: Routes = [
         title: 'Categories',
       },
       { path: 'wishlist', component: WishListComponent, title: 'WishList' },
+      {
+        path: 'details/:id',
+        component: ProductDetailsComponent,
+        title: 'Details',
+      },
     ],
   },
   { path: '**', component: NotFoundComponent, title: 'Not Found' },
