@@ -10,4 +10,6 @@ import { CategoriesSliderComponent } from '../categories-slider/categories-slide
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor() {}
+}

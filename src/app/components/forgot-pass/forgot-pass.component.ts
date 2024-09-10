@@ -6,9 +6,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AlertErrorComponent } from '../shared/ui/alert-error/alert-error.component';
-import { AuthService } from '../core/services/auth.service';
-import { signupValidators } from '../shared/validators/register.validators';
+import { AlertErrorComponent } from '../../shared/ui/alert-error/alert-error.component';
+import { AuthService } from '../../core/services/auth.service';
+import { signupValidators } from '../../shared/validators/register.validators';
 import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-forgot-pass',

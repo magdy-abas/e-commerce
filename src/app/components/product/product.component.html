@@ -14,7 +14,8 @@
           <span>{{product.price}} EGP</span>
           <span><i class="fa fa-star rating-color"></i> {{product.ratingsAverage}}</span>
         </div>
-        <a class="btn d-block btn-main mt-2" (click)="preventNavigation($event)">Add To Cart</a>
+        <a class="btn d-block btn-main mt-2" (click)="addToCart(product._id)" (click)="preventNavigation($event)">Add To
+          Cart</a>
       </div>
     </div>
   </div>
