@@ -1,5 +1,5 @@
 <div class="row">
-  @for (product of allProducts; track product._id) {
+  @for (product of allProducts | search:term ; track product._id) {
   <div class="col-12 col-sm-6 col-md-4 col-lg-custom">
     <div class="card wrap product cursor-pointer border-0 m-2" [routerLink]="'/details/' + product._id">
       <div class="img-wrap">
@@ -11,11 +11,17 @@
           {{product.title.split(" ",2).join(" ")}}
         </h6>
         <div class="d-flex justify-content-between">
-          <span>{{product.price}} EGP</span>
+          <span>{{product.price | currency:"GBP" }} </span>
           <span><i class="fa fa-star rating-color"></i> {{product.ratingsAverage}}</span>
         </div>
+
         <a class="btn d-block btn-main mt-2" (click)="addToCart(product._id)" (click)="preventNavigation($event)">Add To
           Cart</a>
+
+        <span (click)="preventNavigation($event)" (click)="toggleWishlist(product._id)"
+          [ngClass]="{'btn-heart-visible': isInWishlist(product._id)}" class=" text-main position-absolute btn-heart"><i
+            [ngClass]="{'fa-solid': isInWishlist(product._id), 'fa-regular': !isInWishlist(product._id) }"
+            class="fa-regular   fs-2 fa-heart "></i></span>
       </div>
     </div>
   </div>

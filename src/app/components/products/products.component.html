@@ -1,1 +1,6 @@
-<p>products works!</p>
+<section class="py-3">
+  <div class="container">
+    <input [(ngModel)]="searchTerm" type="text" class="w-75 m-auto my-5  form-control" placeholder="search">
+    <app-product [term]="searchTerm"></app-product>
+  </div>
+</section>

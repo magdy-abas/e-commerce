@@ -1,0 +1,10 @@
+<section class="container my-5">
+  <h2>Address</h2>
+  <form [formGroup]='addressForm' (ngSubmit)="payment()">
+    <input formControlName="address" class="form-control my-3" placeholder=" street">
+    <input formControlName="city" type="tel" class="form-control my-3" placeholder="  city">
+    <input formControlName="phone" type="tel" class="form-control my-3" placeholder="  phone">
+    <button type="submit" class="bg-main text-white btn">Pay now</button>
+  </form>
+
+</section>

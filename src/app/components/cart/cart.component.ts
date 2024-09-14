@@ -4,10 +4,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ICart } from '../../core/interfaces/cart';
 import { CurrencyPipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
@@ -33,6 +34,7 @@ export class CartComponent {
     this._CartService.removeItem(id).subscribe({
       next: (res) => {
         console.log(res);
+        this._CartService.cartCounter.next(res.numOfCartItems);
         this.cart = res;
         this._ToastrService.success('Product Deleted Successfully', '', {
           progressBar: true,
@@ -46,6 +48,9 @@ export class CartComponent {
   };
 
   updateQty = (id: string, count: number) => {
+    if (count < 1) {
+      return;
+    }
     this._CartService.updateProductQty(id, count).subscribe({
       next: (res) => {
         console.log(res);
@@ -61,6 +66,22 @@ export class CartComponent {
     });
   };
 
+  clearCart = () => {
+    this._CartService.clearCart().subscribe({
+      next: (res) => {
+        console.log(res);
+        this._CartService.cartCounter.next((res.numOfCartItems = 0));
+        this.cart = {} as ICart;
+        this._ToastrService.success('Cart has cleared', '', {
+          progressBar: true,
+          timeOut: 1500,
+        });
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      },
+    });
+  };
   ngOnInit(): void {
     this.getUserCart();
   }

@@ -1,1 +1,47 @@
-<p>wish-list works!</p>
+<section class="py-3">
+  <div class="container">
+    <h1 class="fw-semibold h4">All Favourite Products
+    </h1>
+    <div class="row">
+      @for (product of wishproducts; track product._id) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-custom">
+        <div class="card wrap product cursor-pointer border-0 m-2" [routerLink]="'/details/' + product._id">
+          <div class="img-wrap">
+            <img [src]="product.imageCover" class="card-img-top" [alt]="product.slug">
+          </div>
+          <div class="card-body">
+            <h6 class="card-title text-main fw-semibold">{{product.category.name}}</h6>
+            <h6 class="card-text fw-semibold">
+              {{product.title.split(" ",2).join(" ")}}
+            </h6>
+            <div class="d-flex justify-content-between">
+              <span>{{product.price | currency:"GBP" }} </span>
+              <span><i class="fa fa-star rating-color"></i> {{product.ratingsAverage}}</span>
+            </div>
+
+            <a class="btn d-block btn-main mt-2 btn" (click)="addToCart(product._id)"
+              (click)="preventNavigation($event)">Add
+              To
+              Cart</a>
+            <span (click)="preventNavigation($event)" (click)="removeFromWishList(product._id)"
+              class="btn-heart-visible text-main position-absolute btn-heart"><i
+                class="fa-solid   fs-2 fa-heart "></i></span>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+</section>
+
+
+@if (wishproducts.length == 0) {
+<section class="bg-main-light rounded-4 shadow p-4 my-2 container">
+  <div class="container">
+    <h2 class="text-center text-main">No WishList</h2>
+  </div>
+</section>
+
+
+}

@@ -14,6 +14,8 @@ import { authGuard } from './core/guards/auth.guard';
 import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
 import { ForgotPassComponent } from './components/forgot-pass/forgot-pass.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { AddressComponent } from './components/address/address.component';
+import { AllOrdersComponent } from './components/all-orders/all-orders.component';
 
 export const routes: Routes = [
   {
@@ -55,6 +57,9 @@ export const routes: Routes = [
         component: ProductDetailsComponent,
         title: 'Details',
       },
+
+      { path: 'address/:id', component: AddressComponent, title: 'Address' },
+      { path: 'allorders', component: AllOrdersComponent, title: 'orders' },
     ],
   },
   { path: '**', component: NotFoundComponent, title: 'Not Found' },

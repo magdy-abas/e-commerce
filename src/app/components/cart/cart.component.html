@@ -1,41 +1,53 @@
-<section class="bg-main-light rounded-4 shadow p-4 my-2  container">
+<section class="bg-main-light rounded-4 shadow p-4 my-2 container">
 
-  @if (cart.numOfCartItems ==0) {
-  <h2 class="text-center text-main">Cart is empty</h2>
-  }@else { <h1 class="h2 text-center">shop Cart</h1>
-  <p class="text-main">Total Cart Price : {{cart.data.totalCartPrice | currency : 'GBP'}}</p>
+  <div class="d-flex justify-content-between">
+    <div>
+      <h1 class="h4 fw-semibold  ">Shop Cart</h1>
+      <p class="text-main fw-semibold mb-1 ">Total Cart Price : {{ cart?.data?.totalCartPrice || 0 | currency : 'GBP' }}
+      </p>
 
-  @for (item of cart.data.products; track item.product._id ) {
+    </div>
+
+    <button (click)="clearCart()" class="btn btn-danger align-self-center ">Clear Cart</button>
+  </div>
+
+  @if (cart?.numOfCartItems !== 0) {
+  @for (item of cart?.data?.products; track item?.product?._id) {
   <div class="row mb-1 border-bottom">
     <div class="col-md-1">
       <div>
-        <img [src]="item.product.imageCover" class="w-100" [alt]="item.product.title">
+        <img [src]="item?.product?.imageCover" class="w-100" [alt]="item?.product?.title">
       </div>
     </div>
     <div class="col-md-11 d-flex align-items-center justify-content-between">
       <div>
-        <h5 class="h5">{{item.product.title}}</h5>
-        <p class="text-main m-0">Price:{{item.price}}</p>
-        <button (click)="deleteItem(item.product._id)" class="text-danger  border-0"><i class="fa-solid fa-trash"></i>
+        <h5 class="h5">{{item?.product?.title}}</h5>
+        <p class="text-main m-0">Price: {{item?.price}}</p>
+        <button (click)="deleteItem(item.product._id)" class="btn-danger btn btn-sm mt-2"><i
+            class="fa-solid fa-trash"></i>
           Remove</button>
       </div>
 
-      <div class="d-flex  align-items-center gap-2">
-        <button (click)="updateQty(item.product._id , item.count +1)" class="text-main  border-0"> <i
-            class="fa-solid fa-circle-plus fa-2xl"></i></button>
-        <span>{{item.count}}</span>
-        <button [disabled]="item.count == 1" (click)="updateQty(item.product._id , item.count -1)"
-          class="text-main   border-0"><i class="fa-solid fa-circle-minus fa-2xl"></i></button>
+      <div class="d-flex align-items-center gap-2">
+        <button (click)="updateQty(item.product._id , item.count + 1)" class="text-main border-0">
+          <i class="fa-solid fa-circle-plus fa-2xl"></i>
+        </button>
+        <span>{{item?.count}}</span>
+        <button (click)="updateQty(item.product._id , item.count - 1)" class="text-main border-0">
+          <i class="fa-solid fa-circle-minus fa-2xl"></i>
+        </button>
       </div>
     </div>
   </div>
 
 
   }
+  <button [routerLink]="['/address', cart?.cartId]" class="bg-main text-white btn">Place Order</button>
+  } @else {
 
-  <button class="bg-main text-white btn">Place Order</button>}
+  <h2 class="text-center text-main">Cart is empty</h2>
 
 
-
+  }
 
 </section>

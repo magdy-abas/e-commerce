@@ -24,7 +24,7 @@ export class CategoriesSliderComponent implements OnInit {
     navSpeed: 700,
     autoplay: true,
     autoplayHoverPause: true,
-    navText: ['prev', 'next'],
+
     responsive: {
       0: {
         items: 1,
@@ -39,7 +39,7 @@ export class CategoriesSliderComponent implements OnInit {
         items: 4,
       },
     },
-    nav: true,
+    nav: false,
   };
   ngOnInit(): void {
     this._CategoriesService.getAllCategories().subscribe({

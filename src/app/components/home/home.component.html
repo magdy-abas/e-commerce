@@ -1,5 +1,7 @@
 <app-slider></app-slider>
-<h3>Popular Categories</h3>
+
+<h1 class="fw-semibold h4 ms-4 py-3 text-main">Popular Categories
+</h1>
 <app-categories-slider></app-categories-slider>
 
 
@@ -8,3 +10,10 @@
     <app-product></app-product>
   </div>
 </section>
+
+
+@if (showBtn) {
+
+<button (click)="goToTop()" class="btn btn-main upBtn"><i class="fa-solid fa-angle-up"></i></button>
+
+}

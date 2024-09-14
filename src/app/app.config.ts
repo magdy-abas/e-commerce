@@ -10,19 +10,33 @@ import {
   provideAnimations,
 } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
+import { headersInterceptor } from './core/interceptor/headers.interceptor';
+import { cathErrorInterceptor } from './core/interceptor/cath-error.interceptor';
+import { loadingInterceptor } from './core/interceptor/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
       routes,
       withViewTransitions(),
-      withHashLocation(),
+
       withInMemoryScrolling({ scrollPositionRestoration: 'top' })
     ),
 
-    provideHttpClient(),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([
+        headersInterceptor,
+        cathErrorInterceptor,
+        loadingInterceptor,
+      ])
+    ),
     importProvidersFrom(BrowserAnimationsModule),
     provideAnimations(), // required animations providers
     provideToastr(),
