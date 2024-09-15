@@ -2,7 +2,10 @@
   @for (slide of categories; track slide._id) {
   <ng-container>
     <ng-template carouselSlide [id]="slide._id">
-      <img [src]="slide.image " height="300" [alt]="slide.name" [title]="slide.name">
+      <div class="owl-div ">
+        <img [src]="slide.image " [alt]="slide.name" [title]="slide.name">
+      </div>
+
     </ng-template>
   </ng-container>
   }

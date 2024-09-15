@@ -21,8 +21,7 @@ export class CategoriesSliderComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    navSpeed: 700,
-    autoplay: true,
+    autoplay: false,
     autoplayHoverPause: true,
 
     responsive: {
@@ -36,7 +35,7 @@ export class CategoriesSliderComponent implements OnInit {
         items: 3,
       },
       940: {
-        items: 4,
+        items: 7,
       },
     },
     nav: false,
