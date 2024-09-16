@@ -13,6 +13,11 @@ export class CartService {
   };
 
   cartCounter: BehaviorSubject<number> = new BehaviorSubject(0);
+
+  resetCartCounter(): void {
+    this.cartCounter.next(0);
+  }
+
   addProductToCart = (productId: string): Observable<any> => {
     return this._HttpClient.post(baseUrl + 'api/v1/cart', {
       productId: productId,

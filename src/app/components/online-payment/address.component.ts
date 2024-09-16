@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { OrderService } from '../../core/services/order.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-address',
@@ -14,7 +15,8 @@ export class AddressComponent {
   constructor(
     private _FormBuilder: FormBuilder,
     private _order: OrderService,
-    private _ActivatedRoute: ActivatedRoute
+    private _ActivatedRoute: ActivatedRoute,
+    private _CartService: CartService
   ) {}
   cartId: string = '';
   addressForm: FormGroup = this._FormBuilder.group({
@@ -30,7 +32,7 @@ export class AddressComponent {
       next: (res) => {
         console.log(res);
         const sessionUrl = res.session.url;
-
+        this._CartService.resetCartCounter();
         window.location.href = sessionUrl;
       },
       error: (err) => {

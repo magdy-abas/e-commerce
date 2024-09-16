@@ -16,7 +16,7 @@ export class ProductDetailsComponent implements OnInit {
     private _ProductsService: ProductsService
   ) {}
 
-  product: IProduct | null = null;
+  product: IProduct = {} as IProduct;
 
   ngOnInit(): void {
     let id: string | null = '';
