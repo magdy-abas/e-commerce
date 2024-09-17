@@ -49,7 +49,7 @@ export class ForgotPassComponent {
           this.msgError = '';
           this.step = 2;
           //save user steps
-          localStorage.setItem('currentStep', this.step.toString());
+
           localStorage.setItem('currentEmail', userEmail!);
         }
       },
@@ -71,7 +71,6 @@ export class ForgotPassComponent {
         if (res.status == 'Success') {
           this.msgError = '';
           this.step = 3;
-          localStorage.setItem('currentStep', this.step.toString());
         }
       },
       error: (err: HttpErrorResponse) => {

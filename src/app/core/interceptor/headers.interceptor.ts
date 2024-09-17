@@ -1,8 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const headersInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log(req.url);
-
   if (
     req.url.includes('cart') ||
     req.url.includes('categories') ||

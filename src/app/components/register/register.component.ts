@@ -43,7 +43,6 @@ export class RegisterComponent {
 
   sendData(): void {
     if (this.registerForm.valid) {
-      console.log(this.registerForm);
       this.isLoading = true;
       this._AuthService.register(this.registerForm.value).subscribe({
         next: (res) => {

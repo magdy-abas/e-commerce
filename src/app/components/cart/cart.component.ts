@@ -5,6 +5,7 @@ import { ICart } from '../../core/interfaces/cart';
 import { CurrencyPipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from '@angular/router';
+import { OrderService } from '../../core/services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private _CartService: CartService,
-    private _ToastrService: ToastrService
+    private _ToastrService: ToastrService,
+    private _order: OrderService
   ) {}
 
   ngOnInit(): void {

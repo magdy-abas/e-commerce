@@ -28,7 +28,11 @@ export class OrderService {
     });
   };
 
-  getUserOrders = (cartId: string): Observable<any> => {
-    return this._httpClient.get(baseUrl + 'api/v1/orders/user/' + cartId);
+  getAllOrders = (userId: string): Observable<any> => {
+    return this._httpClient.get(baseUrl + 'api/v1/orders/' + userId);
+  };
+
+  getUserOrders = (userId: string): Observable<any> => {
+    return this._httpClient.get(baseUrl + 'api/v1/orders/user/' + userId);
   };
 }

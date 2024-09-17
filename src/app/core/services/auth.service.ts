@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   constructor(private _HttpClient: HttpClient, private _Router: Router) {}
-
+  userData: any = null;
   register = (user: object): Observable<any> => {
     return this._HttpClient.post(baseUrl + 'api/v1/auth/signup', user);
   };
@@ -25,7 +25,8 @@ export class AuthService {
     if (localStorage.getItem('token') != null) {
       try {
         let decoded = jwtDecode(token);
-        console.log(decoded);
+
+        this.userData = decoded;
       } catch (error) {
         this._Router.navigate(['login']);
         localStorage.clear();

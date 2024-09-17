@@ -1,5 +1,69 @@
-<section class="all-orders">
-  <div class="container">
-    <p>all-orders works!</p>
+<section class="rounded-4 p-4 my-2 container">
+
+
+
+
+  @if (allOrders) {
+  <div class="all-orders">
+
+
+    @for (order of allOrders; track $index) {
+    <div>
+      <div>
+        <h4 class="mb-3  fw-semibold">Order #{{$index+ 1}}</h4>
+      </div>
+
+      <div class="card mb-3" style="box-shadow: var(--shadow); border-color: var(--main-color);">
+        <div class="card-header" style="background-color: var(--main-color); color: white;">
+          <h6 class="mb-0">Order Information</h6>
+        </div>
+        <div class="card-body p-3">
+          <p><strong>Order Id:</strong> #{{ order.id }}</p>
+          <p><strong>Is Delivered:</strong>
+            <span class="ms-1 badge" [ngClass]="order.isDelivered ? 'bg-success' : 'bg-danger'">
+              {{ order.isDelivered ? 'Yes' : 'No' }}
+            </span>
+          </p>
+          <p><strong>Is Paid:</strong>
+            <span class="ms-1 badge" [ngClass]="order.isPaid ? 'bg-success' : 'bg-danger'">
+              {{ order.isPaid ? 'Yes' : 'No' }}
+            </span>
+          </p>
+          <p><strong>Payment Type:</strong>
+            <span class="badge ms-2 bg-success">{{ order.paymentMethodType }}</span>
+          </p>
+        </div>
+      </div>
+
+
+
+      <!-- Cart Items Section -->
+      <div class="card mb-3" style="box-shadow: var(--shadow); border-color: #343a40;">
+        <div class="card-header" style="background-color: #343a40; color: white;">
+          <h6 class="mb-0">Order Items</h6>
+        </div>
+        <div class="card-body p-3 bg-body-secondary">
+          <div *ngFor="let item of order.cartItems" class="row mb-3">
+            <div class="col-3 col-md-2">
+              <img [src]="item.product.imageCover" alt="{{ item.product.title }}" class="img-fluid rounded" />
+            </div>
+            <div class="col-9 col-md-10 ">
+              <p class="mt-1"><strong>Title:</strong> {{ item.product.title }}</p>
+              <p class="mt-1"><strong>Price:</strong> {{ item.price | currency }}</p>
+              <p class="mt-1"><strong>Quantity:</strong> {{ item.count }}</p>
+              <p class="mt-1"><strong>Brand:</strong> {{ item.product.brand.name }}</p>
+              <p class="mt-1"><strong>Category:</strong> {{ item.product.category.name }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
   </div>
+  }@else {
+  <div class="col-md-7 m-auto">
+    <img src="./assets/images/empty-cart.svg" class="w-100 d-block" alt="empty-cart">
+  </div>
+  }
 </section>

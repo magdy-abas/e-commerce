@@ -1,10 +1,26 @@
 <section class="container my-5">
-  <h2>Address</h2>
-  <form [formGroup]='addressForm' (ngSubmit)="payment()">
-    <input formControlName="address" class="form-control my-3" placeholder=" street">
-    <input formControlName="city" type="tel" class="form-control my-3" placeholder="  city">
-    <input formControlName="phone" type="tel" class="form-control my-3" placeholder="  phone">
-    <button type="submit" class="bg-main text-white btn">Pay now</button>
-  </form>
+  <div class="row">
+    <div class="col-md-6 d-none d-md-flex">
+      <img src="./assets/images/Credit card-cuate.svg" class="img-fluid" alt="online-payment">
+    </div>
+    <div class="col-md-6 py-5 py-md-0   bg-body-tertiary  align-content-center">
+      <div class="form  text-main fw-medium ">
+        <h2 class="text-center">Address</h2>
+        <form class="w-75 m-auto" [formGroup]='addressForm' (ngSubmit)="payment()">
+          <input formControlName="address" class="form-control my-3" placeholder=" street">
+          <alertError controlName="address" [formName]="addressForm"></alertError>
+          <input formControlName="city" type="text" class="form-control my-3" placeholder="  city">
+          <alertError controlName="city" [formName]="addressForm"></alertError>
+          <input formControlName="phone" type="tel" class="form-control my-3" placeholder="  phone">
+          <alertError controlName="phone" [formName]="addressForm"></alertError>
+          <button type="submit" class="bg-main text-white btn">Pay now</button>
+        </form>
+
+
+      </div>
+
+    </div>
+  </div>
+
 
 </section>

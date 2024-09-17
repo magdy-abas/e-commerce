@@ -2,7 +2,7 @@
   <!-- Check if cart exists and has items -->
   @if (cart && cart.numOfCartItems > 0) {
   <div class="shadow bg-main-light p-4">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between flex-wrap">
       <div>
         <h1 class="h4 fw-semibold">Shop Cart</h1>
         <p class="text-main fw-semibold mb-1">
@@ -14,14 +14,14 @@
 
     <!-- Loop through products in the cart -->
     @for (item of cart.data.products; track item.product._id) {
-    <div class="row my-2 border-bottom">
+    <div class="row py-3 border-bottom">
       <div class="col-md-1">
         <img [src]="item.product.imageCover" class="w-100" [alt]="item.product.title">
       </div>
       <div class="col-md-11 d-flex align-items-center justify-content-between">
         <div>
           <h5 class="h5">{{ item.product.title }}</h5>
-          <p class="text-main m-0">Price: {{ item.price }}</p>
+          <p class="text-main m-0">Price: {{ item.price | currency:'GBP' }}</p>
           <button (click)="deleteItem(item.product._id)" class="btn-danger btn btn-sm mt-2">
             <i class="fa-solid fa-trash"></i> Remove
           </button>
