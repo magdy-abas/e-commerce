@@ -17,7 +17,7 @@ export class OrderService {
       baseUrl +
         'api/v1/orders/checkout-session/' +
         cartId +
-        `?url=http://localhost:4200`,
+        `?url=https://e-commerce-git-main-magdy-abas-projects.vercel.app/`,
       { shippingAddress }
     );
   };
